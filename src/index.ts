@@ -1,20 +1,16 @@
-import express, { Application,Request,Response } from "express";
-import * as dotenv from "dotenv";
+import express, { Request,Response } from 'express';
 
-dotenv.config();
+const app =  express();
 
-const app : Application = express();
-
-const port = process.env.PORT;
-
-app.use(express.urlencoded({extended: false}))
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
-app.get("/",(req: Request,res: Response) => {
-    res.send("hello Express + Typescript !!!!!!")
+
+app.get('/',(req: Request,res: Response) => {
+    res.status(200).json({
+        message: 'Success'
+    })
 });
 
-app.listen(port,(): void => {
-    console.log(`Server is listening at ${port}..`);
-})
+export default app;
 
